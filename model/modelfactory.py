@@ -17,11 +17,21 @@ class ModelFactory():
                 return resnet.resnet20(8)
             elif dataset == 'corner':
                 return resnet.resnet20(2)
-        if model_type == "resnet8":
+        elif model_type == "resnet8":
             if dataset == 'document':
                 return resnet.resnet8(8)
             elif dataset == 'corner':
                 return resnet.resnet8(2)
+        elif model_type == "resnet32":
+            if dataset == 'document':
+                return resnet.resnet32(8)
+            elif dataset == 'corner':
+                return resnet.resnet32(2)
+        elif model_type == "resnet44":
+            if dataset == 'document':
+                return resnet.resnet44(8)
+            elif dataset == 'corner':
+                return resnet.resnet44(2)
         elif model_type == 'shallow':
             if dataset == 'document':
                 return tm.MobileNet(8)
