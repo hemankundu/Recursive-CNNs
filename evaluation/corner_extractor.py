@@ -69,4 +69,4 @@ class GetCorners:
             bottom_left = (bottom_left, max(0, int(2 * x_cords[3] - (x_cords[2] + x_cords[3]) / 2)),
                            int((y_cords[0] + y_cords[3]) / 2))
 
-            return top_left, top_right, bottom_right, bottom_left
+            return top_left, top_right, bottom_right, bottom_left, x_cords, y_cords

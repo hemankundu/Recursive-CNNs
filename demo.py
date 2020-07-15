@@ -14,7 +14,7 @@ def args_processor():
     parser.add_argument("-i", "--imagePath", default="../058.jpg", help="Path to the document image")
     parser.add_argument("-o", "--outputPath", default="../output.jpg", help="Path to store the result")
     parser.add_argument("-rf", "--retainFactor", help="Floating point in range (0,1) specifying retain factor",
-                        default="0.85")
+                        default=0.85)
     parser.add_argument("-cm", "--cornerModel", help="Model for corner point refinement",
                         default="../cornerModelWell")
     parser.add_argument("-cm_type", "--cornerModelType", help="Model type for corner point refinement",
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     extracted_corners = extracted_corners[:-2]
 
     for x, y in zip(x_coords, y_coords):
-        oImg = cv2.circle(oImg, (x, y), 5, (255,,0,0), -1)
+        oImg = cv2.circle(oImg, (x, y), 5, (255,0,0), -1)
 
     corner_address = []
     # Refine the detected corners using corner refiner
