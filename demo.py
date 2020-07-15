@@ -41,6 +41,8 @@ if __name__ == "__main__":
     x_coords, y_coords = extracted_corners[-2:]
     extracted_corners = extracted_corners[:-2]
 
+    # print(extracted_corners)
+
     for x, y in zip(x_coords, y_coords):
         oImg = cv2.circle(oImg, (x, y), 5, (255,0,0), -1)
 

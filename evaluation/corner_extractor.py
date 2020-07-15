@@ -42,6 +42,28 @@ class GetCorners:
 
             # Extract the four corners of the image. Read "Region Extractor" in Section III of the paper for an explanation.
 
+            #test print
+
+            print('top_left =',
+                       max(0, int(2 * y_cords[0] - (y_cords[3] + y_cords[0]) / 2)), ':', int((y_cords[3] + y_cords[0]) / 2),
+                       max(0, int(2 * x_cords[0] - (x_cords[1] + x_cords[0]) / 2)), ':', int((x_cords[1] + x_cords[0]) / 2))
+
+            print('top_right =',
+                        max(0, int(2 * y_cords[1] - (y_cords[1] + y_cords[2]) / 2)), ':', int((y_cords[1] + y_cords[2]) / 2),
+                        int((x_cords[1] + x_cords[0]) / 2), ':', min(image_array.shape[1] - 1,
+                                                               int(x_cords[1] + (x_cords[1] - x_cords[0]) / 2)))
+
+            print('bottom_right =',int((y_cords[1] + y_cords[2]) / 2), ':', min(image_array.shape[0] - 1, int(
+                y_cords[2] + (y_cords[2] - y_cords[1]) / 2)),
+                           int((x_cords[2] + x_cords[3]) / 2), ':', min(image_array.shape[1] - 1,
+                                                                  int(x_cords[2] + (x_cords[2] - x_cords[3]) / 2)))
+
+            print('bottom_left =',int((y_cords[0] + y_cords[3]) / 2), ':', min(image_array.shape[0] - 1, int(
+                y_cords[3] + (y_cords[3] - y_cords[0]) / 2)),
+                          max(0, int(2 * x_cords[3] - (x_cords[2] + x_cords[3]) / 2)), ':', int(
+                              (x_cords[3] + x_cords[2]) / 2))
+
+
             top_left = image_array[
                        max(0, int(2 * y_cords[0] - (y_cords[3] + y_cords[0]) / 2)):int((y_cords[3] + y_cords[0]) / 2),
                        max(0, int(2 * x_cords[0] - (x_cords[1] + x_cords[0]) / 2)):int((x_cords[1] + x_cords[0]) / 2)]
