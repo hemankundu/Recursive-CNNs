@@ -2,6 +2,7 @@
 import torch
 import torchvision
 
+import model
 import evaluation
 
 
@@ -24,16 +25,16 @@ if __name__ == "__main__":
     args = args_processor()
 
     if args.ModelFor in ['document', 'corner']:
-        model = model.ModelFactory.get_model(args.ModelType, args.ModelFor)
-        model.load_state_dict(torch.load(args.InputModelPath, map_location='cpu'))
-        if torch.cuda.is_available():
-            model.cuda()
-        model.eval()
+        myModel = model.ModelFactory.get_model(args.ModelType, args.ModelFor)
+        myModel.load_state_dict(torch.load(args.InputModelPath, map_location='cpu'))
+        # if torch.cuda.is_available():
+        #     model.cuda()
+        myModel.eval()
 
         example = torch.rand(1, 3, 32, 32)
-        traced_script_module = torch.jit.trace(model, example)
+        traced_script_module = torch.jit.trace(myModel, example)
 
-        traced_script_module.save(args.OutputModelPath.rstrip('/') 
+        traced_script_module.save(args.OutputModelPath.rstrip('/') + '/'
                                     + args.InputModelPath.split('/')[-1].split('.')[0] + '.pt')
 
     else:
