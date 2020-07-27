@@ -13,8 +13,6 @@ def args_processor():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--imagePath", default="../058.jpg", help="Path to the document image")
     parser.add_argument("-o", "--outputPath", default="../output.jpg", help="Path to store the result")
-    parser.add_argument("-rf", "--retainFactor", help="Floating point in range (0,1) specifying retain factor",
-                        default=0.85)
     parser.add_argument("-cm", "--cornerModel", help="Model for corner point refinement",
                         default="../cornerModelWell")
     parser.add_argument("-cm_type", "--cornerModelType", help="Model type for corner point refinement",
@@ -51,12 +49,12 @@ if __name__ == "__main__":
     image_name = 0
     for corner in extracted_corners:
         image_name += 1
-        corner_img = corner[0]
+        corner_img = corner[1]
         refined_corner = np.array(corner_refiner.get_location(corner_img, args.retainFactor))
 
         # Converting from local co-ordinate to global co-ordinates of the image
-        refined_corner[0] += corner[1]
-        refined_corner[1] += corner[2]
+        refined_corner[0] = int(refined_corner[0]*(corner[0][3] - corner[0][2]) + corner[0][2])
+        refined_corner[1] = int(refined_corner[1]*(corner[0][1] - corner[0][0]) + corner[0][0])
 
         # Final results
         corner_address.append(refined_corner)
